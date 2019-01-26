@@ -10,28 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HelloPoints/MyShaders.metal"
-            timestampString = "570213870.710379"
+            timestampString = "570216182.4737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "red_vertex_shader(device float3 *vertices [[ buffer(1) ]], uint vid [[ vertex_id ]])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HelloPoints/MyShaders.metal"
-            timestampString = "570213870.710554"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "red_vertex_shader(device float3 *vertices [[ buffer(1) ]], uint vid [[ vertex_id ]])"
+            landmarkName = "red_vertex_shader(device InPoint *vertices [[ buffer(1) ]], uint vid [[ vertex_id ]])"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

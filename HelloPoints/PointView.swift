@@ -26,10 +26,8 @@ class PointView: MTKView {
         float3(0,0.5,0)
     ]
     
-    let redVertices: [float3] = [
-        float3(0,-0.5,0),
-        float3(0.5,0.5,0),
-        float3(-0.5,0.5,0)
+    let redVertices: [Point] = [
+        Point(position: float3(0,-0.5,0), momentum: float3(0.002,0.008,0))
     ]
     
     let redLines: [float3] = [
@@ -74,7 +72,7 @@ class PointView: MTKView {
     func createBuffers() {
         vertexBuffer = device?.makeBuffer(bytes: vertices, length: MemoryLayout<float3>.stride * vertices.count, options: [])
         pointBuffer = device?.makeBuffer(bytes: points, length: MemoryLayout<Point>.stride * points.count, options: [])
-        redVertexBuffer = device?.makeBuffer(bytes: redVertices, length: MemoryLayout<float3>.stride * redVertices.count, options: [])
+        redVertexBuffer = device?.makeBuffer(bytes: redVertices, length: MemoryLayout<Point>.stride * redVertices.count, options: [])
         redLinesBuffer = device?.makeBuffer(bytes: redLines, length: MemoryLayout<float3>.stride * redLines.count, options: [])
     }
     

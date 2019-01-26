@@ -25,14 +25,25 @@ fragment half4 basic_fragment_shader(OutPoint point [[ stage_in ]]) {
     return half4(1, 1, 1, 1);
 }
 
-vertex OutPoint red_vertex_shader(device float3 *vertices [[ buffer(1) ]],
-                                 uint vid [[ vertex_id ]]) {
+vertex OutPoint red_vertex_shader(device InPoint *vertices [[ buffer(1) ]],
+                                  uint vid [[ vertex_id ]]) {
     OutPoint point;
     if (vid == 0) {
-        vertices[vid].x += 0.0005;
-        vertices[vid].y += 0.002;
+        // magnitude is 0.003
+        float newX = vertices[vid].position.x + vertices[vid].momentum.x;
+        float newY = vertices[vid].position.y + vertices[vid].momentum.y;
+        if (newX > 0.5 || newX < -0.5) {
+            newX = -newX;
+            vertices[vid].momentum.x = -vertices[vid].momentum.x;
+        }
+        if (newY > 0.5 || newY < -0.5) {
+            newY = -newY;
+            vertices[vid].momentum.y = -vertices[vid].momentum.y;
+        }
+        vertices[vid].position.x += vertices[vid].momentum.x;
+        vertices[vid].position.y += vertices[vid].momentum.y;
     }
-    point.position = float4(vertices[vid], 1);
+    point.position = float4(vertices[vid].position, 1);
     point.size = 8.0;
     return point;
 }
