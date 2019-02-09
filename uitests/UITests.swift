@@ -1,6 +1,6 @@
 //
-//  HelloPointsUITests.swift
-//  HelloPointsUITests
+//  UITests.swift
+//  UITests
 //
 //  Created by Kevin Stumph on 1/19/19.
 //  Copyright © 2019 Kevin Stumph. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class HelloPointsUITests: XCTestCase {
+class UITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

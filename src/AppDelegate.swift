@@ -1,6 +1,5 @@
 //
 //  AppDelegate.swift
-//  HelloPoints
 //
 //  Created by Kevin Stumph on 1/19/19.
 //  Copyright © 2019 Kevin Stumph. All rights reserved.
@@ -30,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "HelloPoints")
+        let container = NSPersistentContainer(name: "HelloKDTree")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error {
                 // Replace this implementation with code to handle the error appropriately.

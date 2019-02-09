@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		CB0FFCEA21F3AD6700D6FAE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFCE921F3AD6700D6FAE2 /* AppDelegate.swift */; };
 		CB0FFCEC21F3AD6700D6FAE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFCEB21F3AD6700D6FAE2 /* ViewController.swift */; };
-		CB0FFCEF21F3AD6700D6FAE2 /* HelloPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFCED21F3AD6700D6FAE2 /* HelloPoints.xcdatamodeld */; };
+		CB0FFCEF21F3AD6700D6FAE2 /* src.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFCED21F3AD6700D6FAE2 /* src.xcdatamodeld */; };
 		CB0FFCF121F3AD6900D6FAE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB0FFCF021F3AD6900D6FAE2 /* Assets.xcassets */; };
 		CB0FFCF421F3AD6900D6FAE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB0FFCF221F3AD6900D6FAE2 /* Main.storyboard */; };
-		CB0FFD0021F3AD6900D6FAE2 /* HelloPointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFCFF21F3AD6900D6FAE2 /* HelloPointsTests.swift */; };
-		CB0FFD0B21F3AD6900D6FAE2 /* HelloPointsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD0A21F3AD6900D6FAE2 /* HelloPointsUITests.swift */; };
+		CB0FFD0021F3AD6900D6FAE2 /* tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFCFF21F3AD6900D6FAE2 /* tests.swift */; };
+		CB0FFD0B21F3AD6900D6FAE2 /* uitests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD0A21F3AD6900D6FAE2 /* uitests.swift */; };
 		CB0FFD1921F3C9E300D6FAE2 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD1821F3C9E300D6FAE2 /* PointView.swift */; };
 		CB0FFD1B21F3F59200D6FAE2 /* MyShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD1A21F3F59200D6FAE2 /* MyShaders.metal */; };
 		CBB45CFC21FD45DB00EB45BB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB45CFB21FD45DB00EB45BB /* Extensions.swift */; };
@@ -25,31 +25,31 @@
 			containerPortal = CB0FFCDE21F3AD6700D6FAE2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CB0FFCE521F3AD6700D6FAE2;
-			remoteInfo = HelloPoints;
+			remoteInfo = src;
 		};
 		CB0FFD0721F3AD6900D6FAE2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CB0FFCDE21F3AD6700D6FAE2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CB0FFCE521F3AD6700D6FAE2;
-			remoteInfo = HelloPoints;
+			remoteInfo = src;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CB0FFCE621F3AD6700D6FAE2 /* HelloPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0FFCE621F3AD6700D6FAE2 /* HelloKDTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloKDTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0FFCE921F3AD6700D6FAE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB0FFCEB21F3AD6700D6FAE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CB0FFCEE21F3AD6700D6FAE2 /* HelloPoints.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HelloPoints.xcdatamodel; sourceTree = "<group>"; };
+		CB0FFCEE21F3AD6700D6FAE2 /* src.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = src.xcdatamodel; sourceTree = "<group>"; };
 		CB0FFCF021F3AD6900D6FAE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB0FFCF321F3AD6900D6FAE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB0FFCF521F3AD6900D6FAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB0FFCF621F3AD6900D6FAE2 /* HelloPoints.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HelloPoints.entitlements; sourceTree = "<group>"; };
-		CB0FFCFB21F3AD6900D6FAE2 /* HelloPointsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloPointsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB0FFCFF21F3AD6900D6FAE2 /* HelloPointsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloPointsTests.swift; sourceTree = "<group>"; };
+		CB0FFCF621F3AD6900D6FAE2 /* src.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = src.entitlements; sourceTree = "<group>"; };
+		CB0FFCFB21F3AD6900D6FAE2 /* HelloKDTreeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloKDTreeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0FFCFF21F3AD6900D6FAE2 /* tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
 		CB0FFD0121F3AD6900D6FAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB0FFD0621F3AD6900D6FAE2 /* HelloPointsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloPointsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB0FFD0A21F3AD6900D6FAE2 /* HelloPointsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloPointsUITests.swift; sourceTree = "<group>"; };
+		CB0FFD0621F3AD6900D6FAE2 /* HelloKDTreeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloKDTreeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0FFD0A21F3AD6900D6FAE2 /* uitests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uitests.swift; sourceTree = "<group>"; };
 		CB0FFD0C21F3AD6900D6FAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB0FFD1821F3C9E300D6FAE2 /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
 		CB0FFD1A21F3F59200D6FAE2 /* MyShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MyShaders.metal; sourceTree = "<group>"; };
@@ -84,9 +84,9 @@
 		CB0FFCDD21F3AD6700D6FAE2 = {
 			isa = PBXGroup;
 			children = (
-				CB0FFCE821F3AD6700D6FAE2 /* HelloPoints */,
-				CB0FFCFE21F3AD6900D6FAE2 /* HelloPointsTests */,
-				CB0FFD0921F3AD6900D6FAE2 /* HelloPointsUITests */,
+				CB0FFCE821F3AD6700D6FAE2 /* src */,
+				CB0FFCFE21F3AD6900D6FAE2 /* tests */,
+				CB0FFD0921F3AD6900D6FAE2 /* uitests */,
 				CB0FFCE721F3AD6700D6FAE2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,14 +94,14 @@
 		CB0FFCE721F3AD6700D6FAE2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB0FFCE621F3AD6700D6FAE2 /* HelloPoints.app */,
-				CB0FFCFB21F3AD6900D6FAE2 /* HelloPointsTests.xctest */,
-				CB0FFD0621F3AD6900D6FAE2 /* HelloPointsUITests.xctest */,
+				CB0FFCE621F3AD6700D6FAE2 /* HelloKDTree.app */,
+				CB0FFCFB21F3AD6900D6FAE2 /* HelloKDTreeTests.xctest */,
+				CB0FFD0621F3AD6900D6FAE2 /* HelloKDTreeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CB0FFCE821F3AD6700D6FAE2 /* HelloPoints */ = {
+		CB0FFCE821F3AD6700D6FAE2 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				CB0FFCE921F3AD6700D6FAE2 /* AppDelegate.swift */,
@@ -109,39 +109,39 @@
 				CB0FFCF021F3AD6900D6FAE2 /* Assets.xcassets */,
 				CB0FFCF221F3AD6900D6FAE2 /* Main.storyboard */,
 				CB0FFCF521F3AD6900D6FAE2 /* Info.plist */,
-				CB0FFCF621F3AD6900D6FAE2 /* HelloPoints.entitlements */,
-				CB0FFCED21F3AD6700D6FAE2 /* HelloPoints.xcdatamodeld */,
+				CB0FFCF621F3AD6900D6FAE2 /* src.entitlements */,
+				CB0FFCED21F3AD6700D6FAE2 /* src.xcdatamodeld */,
 				CB0FFD1821F3C9E300D6FAE2 /* PointView.swift */,
 				CB0FFD1A21F3F59200D6FAE2 /* MyShaders.metal */,
 				CBB45CFB21FD45DB00EB45BB /* Extensions.swift */,
 			);
-			path = HelloPoints;
+			path = src;
 			sourceTree = "<group>";
 		};
-		CB0FFCFE21F3AD6900D6FAE2 /* HelloPointsTests */ = {
+		CB0FFCFE21F3AD6900D6FAE2 /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				CB0FFCFF21F3AD6900D6FAE2 /* HelloPointsTests.swift */,
+				CB0FFCFF21F3AD6900D6FAE2 /* tests.swift */,
 				CB0FFD0121F3AD6900D6FAE2 /* Info.plist */,
 			);
-			path = HelloPointsTests;
+			path = tests;
 			sourceTree = "<group>";
 		};
-		CB0FFD0921F3AD6900D6FAE2 /* HelloPointsUITests */ = {
+		CB0FFD0921F3AD6900D6FAE2 /* uitests */ = {
 			isa = PBXGroup;
 			children = (
-				CB0FFD0A21F3AD6900D6FAE2 /* HelloPointsUITests.swift */,
+				CB0FFD0A21F3AD6900D6FAE2 /* uitests.swift */,
 				CB0FFD0C21F3AD6900D6FAE2 /* Info.plist */,
 			);
-			path = HelloPointsUITests;
+			path = uitests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CB0FFCE521F3AD6700D6FAE2 /* HelloPoints */ = {
+		CB0FFCE521F3AD6700D6FAE2 /* HelloKDTree */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB0FFD0F21F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloPoints" */;
+			buildConfigurationList = CB0FFD0F21F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloKDTree" */;
 			buildPhases = (
 				CB0FFCE221F3AD6700D6FAE2 /* Sources */,
 				CB0FFCE321F3AD6700D6FAE2 /* Frameworks */,
@@ -151,14 +151,14 @@
 			);
 			dependencies = (
 			);
-			name = HelloPoints;
-			productName = HelloPoints;
-			productReference = CB0FFCE621F3AD6700D6FAE2 /* HelloPoints.app */;
+			name = HelloKDTree;
+			productName = src;
+			productReference = CB0FFCE621F3AD6700D6FAE2 /* HelloKDTree.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CB0FFCFA21F3AD6900D6FAE2 /* HelloPointsTests */ = {
+		CB0FFCFA21F3AD6900D6FAE2 /* HelloKDTreeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB0FFD1221F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloPointsTests" */;
+			buildConfigurationList = CB0FFD1221F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloKDTreeTests" */;
 			buildPhases = (
 				CB0FFCF721F3AD6900D6FAE2 /* Sources */,
 				CB0FFCF821F3AD6900D6FAE2 /* Frameworks */,
@@ -169,14 +169,14 @@
 			dependencies = (
 				CB0FFCFD21F3AD6900D6FAE2 /* PBXTargetDependency */,
 			);
-			name = HelloPointsTests;
-			productName = HelloPointsTests;
-			productReference = CB0FFCFB21F3AD6900D6FAE2 /* HelloPointsTests.xctest */;
+			name = HelloKDTreeTests;
+			productName = tests;
+			productReference = CB0FFCFB21F3AD6900D6FAE2 /* HelloKDTreeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CB0FFD0521F3AD6900D6FAE2 /* HelloPointsUITests */ = {
+		CB0FFD0521F3AD6900D6FAE2 /* HelloKDTreeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB0FFD1521F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloPointsUITests" */;
+			buildConfigurationList = CB0FFD1521F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloKDTreeUITests" */;
 			buildPhases = (
 				CB0FFD0221F3AD6900D6FAE2 /* Sources */,
 				CB0FFD0321F3AD6900D6FAE2 /* Frameworks */,
@@ -187,9 +187,9 @@
 			dependencies = (
 				CB0FFD0821F3AD6900D6FAE2 /* PBXTargetDependency */,
 			);
-			name = HelloPointsUITests;
-			productName = HelloPointsUITests;
-			productReference = CB0FFD0621F3AD6900D6FAE2 /* HelloPointsUITests.xctest */;
+			name = HelloKDTreeUITests;
+			productName = uitests;
+			productReference = CB0FFD0621F3AD6900D6FAE2 /* HelloKDTreeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -215,7 +215,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CB0FFCE121F3AD6700D6FAE2 /* Build configuration list for PBXProject "HelloPoints" */;
+			buildConfigurationList = CB0FFCE121F3AD6700D6FAE2 /* Build configuration list for PBXProject "HelloKDTree" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -228,9 +228,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CB0FFCE521F3AD6700D6FAE2 /* HelloPoints */,
-				CB0FFCFA21F3AD6900D6FAE2 /* HelloPointsTests */,
-				CB0FFD0521F3AD6900D6FAE2 /* HelloPointsUITests */,
+				CB0FFCE521F3AD6700D6FAE2 /* HelloKDTree */,
+				CB0FFCFA21F3AD6900D6FAE2 /* HelloKDTreeTests */,
+				CB0FFD0521F3AD6900D6FAE2 /* HelloKDTreeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -266,7 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB0FFCEF21F3AD6700D6FAE2 /* HelloPoints.xcdatamodeld in Sources */,
+				CB0FFCEF21F3AD6700D6FAE2 /* src.xcdatamodeld in Sources */,
 				CBB45CFC21FD45DB00EB45BB /* Extensions.swift in Sources */,
 				CB0FFCEC21F3AD6700D6FAE2 /* ViewController.swift in Sources */,
 				CB0FFCEA21F3AD6700D6FAE2 /* AppDelegate.swift in Sources */,
@@ -279,7 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB0FFD0021F3AD6900D6FAE2 /* HelloPointsTests.swift in Sources */,
+				CB0FFD0021F3AD6900D6FAE2 /* tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB0FFD0B21F3AD6900D6FAE2 /* HelloPointsUITests.swift in Sources */,
+				CB0FFD0B21F3AD6900D6FAE2 /* uitests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,12 +296,12 @@
 /* Begin PBXTargetDependency section */
 		CB0FFCFD21F3AD6900D6FAE2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CB0FFCE521F3AD6700D6FAE2 /* HelloPoints */;
+			target = CB0FFCE521F3AD6700D6FAE2 /* HelloKDTree */;
 			targetProxy = CB0FFCFC21F3AD6900D6FAE2 /* PBXContainerItemProxy */;
 		};
 		CB0FFD0821F3AD6900D6FAE2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CB0FFCE521F3AD6700D6FAE2 /* HelloPoints */;
+			target = CB0FFCE521F3AD6700D6FAE2 /* HelloKDTree */;
 			targetProxy = CB0FFD0721F3AD6900D6FAE2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -437,17 +437,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HelloPoints/HelloPoints.entitlements;
+				CODE_SIGN_ENTITLEMENTS = src/src.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4NHE68VNKB;
-				INFOPLIST_FILE = HelloPoints/Info.plist;
+				INFOPLIST_FILE = src/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.HelloPoints;
+				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.HelloKDTree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -456,17 +458,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HelloPoints/HelloPoints.entitlements;
+				CODE_SIGN_ENTITLEMENTS = src/src.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4NHE68VNKB;
-				INFOPLIST_FILE = HelloPoints/Info.plist;
+				INFOPLIST_FILE = src/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.HelloPoints;
+				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.HelloKDTree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -479,16 +483,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4NHE68VNKB;
-				INFOPLIST_FILE = HelloPointsTests/Info.plist;
+				INFOPLIST_FILE = tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.HelloPointsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloPoints.app/Contents/MacOS/HelloPoints";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloKDTree.app/Contents/MacOS/HelloKDTree";
 			};
 			name = Debug;
 		};
@@ -500,16 +504,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4NHE68VNKB;
-				INFOPLIST_FILE = HelloPointsTests/Info.plist;
+				INFOPLIST_FILE = tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.HelloPointsTests;
+				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloPoints.app/Contents/MacOS/HelloPoints";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloKDTree.app/Contents/MacOS/HelloKDTree";
 			};
 			name = Release;
 		};
@@ -520,16 +524,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4NHE68VNKB;
-				INFOPLIST_FILE = HelloPointsUITests/Info.plist;
+				INFOPLIST_FILE = uitests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.HelloPointsUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_TARGET_NAME = HelloPoints;
+				TEST_TARGET_NAME = src;
 			};
 			name = Debug;
 		};
@@ -540,23 +544,23 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4NHE68VNKB;
-				INFOPLIST_FILE = HelloPointsUITests/Info.plist;
+				INFOPLIST_FILE = uitests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.HelloPointsUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = kvs.test.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_TARGET_NAME = HelloPoints;
+				TEST_TARGET_NAME = src;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CB0FFCE121F3AD6700D6FAE2 /* Build configuration list for PBXProject "HelloPoints" */ = {
+		CB0FFCE121F3AD6700D6FAE2 /* Build configuration list for PBXProject "HelloKDTree" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB0FFD0D21F3AD6900D6FAE2 /* Debug */,
@@ -565,7 +569,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CB0FFD0F21F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloPoints" */ = {
+		CB0FFD0F21F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloKDTree" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB0FFD1021F3AD6900D6FAE2 /* Debug */,
@@ -574,7 +578,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CB0FFD1221F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloPointsTests" */ = {
+		CB0FFD1221F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloKDTreeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB0FFD1321F3AD6900D6FAE2 /* Debug */,
@@ -583,7 +587,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CB0FFD1521F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloPointsUITests" */ = {
+		CB0FFD1521F3AD6900D6FAE2 /* Build configuration list for PBXNativeTarget "HelloKDTreeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB0FFD1621F3AD6900D6FAE2 /* Debug */,
@@ -595,13 +599,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CB0FFCED21F3AD6700D6FAE2 /* HelloPoints.xcdatamodeld */ = {
+		CB0FFCED21F3AD6700D6FAE2 /* src.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CB0FFCEE21F3AD6700D6FAE2 /* HelloPoints.xcdatamodel */,
+				CB0FFCEE21F3AD6700D6FAE2 /* src.xcdatamodel */,
 			);
-			currentVersion = CB0FFCEE21F3AD6700D6FAE2 /* HelloPoints.xcdatamodel */;
-			path = HelloPoints.xcdatamodeld;
+			currentVersion = CB0FFCEE21F3AD6700D6FAE2 /* src.xcdatamodel */;
+			path = src.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

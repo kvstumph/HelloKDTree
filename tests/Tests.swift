@@ -1,6 +1,6 @@
 //
-//  HelloPointsTests.swift
-//  HelloPointsTests
+//  Tests.swift
+//  Tests
 //
 //  Created by Kevin Stumph on 1/19/19.
 //  Copyright © 2019 Kevin Stumph. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import HelloPoints
 
-class HelloPointsTests: XCTestCase {
+class Tests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
