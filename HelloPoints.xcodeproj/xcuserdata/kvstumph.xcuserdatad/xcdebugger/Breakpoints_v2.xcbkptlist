@@ -10,13 +10,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HelloPoints/MyShaders.metal"
-            timestampString = "570216182.4737"
+            timestampString = "571437441.71307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "red_vertex_shader(device InPoint *vertices [[ buffer(1) ]], uint vid [[ vertex_id ]])"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "red_vertex_shader(device InPoint *vertices [[ buffer(1) ]], device float3 *voronoiVertices [[ buffer(4) ]], uint vid [[ vertex_id ]])"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HelloPoints/PointView.swift"
+            timestampString = "571437441.713201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "draw(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -16,6 +16,7 @@
 		CB0FFD0B21F3AD6900D6FAE2 /* HelloPointsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD0A21F3AD6900D6FAE2 /* HelloPointsUITests.swift */; };
 		CB0FFD1921F3C9E300D6FAE2 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD1821F3C9E300D6FAE2 /* PointView.swift */; };
 		CB0FFD1B21F3F59200D6FAE2 /* MyShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD1A21F3F59200D6FAE2 /* MyShaders.metal */; };
+		CBB45CFC21FD45DB00EB45BB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB45CFB21FD45DB00EB45BB /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		CB0FFD0C21F3AD6900D6FAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB0FFD1821F3C9E300D6FAE2 /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
 		CB0FFD1A21F3F59200D6FAE2 /* MyShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MyShaders.metal; sourceTree = "<group>"; };
+		CBB45CFB21FD45DB00EB45BB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				CB0FFCED21F3AD6700D6FAE2 /* HelloPoints.xcdatamodeld */,
 				CB0FFD1821F3C9E300D6FAE2 /* PointView.swift */,
 				CB0FFD1A21F3F59200D6FAE2 /* MyShaders.metal */,
+				CBB45CFB21FD45DB00EB45BB /* Extensions.swift */,
 			);
 			path = HelloPoints;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB0FFCEF21F3AD6700D6FAE2 /* HelloPoints.xcdatamodeld in Sources */,
+				CBB45CFC21FD45DB00EB45BB /* Extensions.swift in Sources */,
 				CB0FFCEC21F3AD6700D6FAE2 /* ViewController.swift in Sources */,
 				CB0FFCEA21F3AD6700D6FAE2 /* AppDelegate.swift in Sources */,
 				CB0FFD1B21F3F59200D6FAE2 /* MyShaders.metal in Sources */,

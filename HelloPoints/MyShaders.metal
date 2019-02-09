@@ -26,25 +26,25 @@ fragment half4 basic_fragment_shader(OutPoint point [[ stage_in ]]) {
 }
 
 vertex OutPoint red_vertex_shader(device InPoint *vertices [[ buffer(1) ]],
+                                  device float3 *voronoiVertices [[ buffer(4) ]],
                                   uint vid [[ vertex_id ]]) {
     OutPoint point;
-    if (vid == 0) {
-        // magnitude is 0.003
-        float newX = vertices[vid].position.x + vertices[vid].momentum.x;
-        float newY = vertices[vid].position.y + vertices[vid].momentum.y;
-        if (newX > 0.5 || newX < -0.5) {
-            newX = -newX;
-            vertices[vid].momentum.x = -vertices[vid].momentum.x;
-        }
-        if (newY > 0.5 || newY < -0.5) {
-            newY = -newY;
-            vertices[vid].momentum.y = -vertices[vid].momentum.y;
-        }
-        vertices[vid].position.x += vertices[vid].momentum.x;
-        vertices[vid].position.y += vertices[vid].momentum.y;
+
+    float newX = vertices[vid].position.x + vertices[vid].momentum.x;
+    float newY = vertices[vid].position.y + vertices[vid].momentum.y;
+    if (newX > 0.5 || newX < -0.5) {
+        newX = -newX;
+        vertices[vid].momentum.x = -vertices[vid].momentum.x;
     }
+    if (newY > 0.5 || newY < -0.5) {
+        newY = -newY;
+        vertices[vid].momentum.y = -vertices[vid].momentum.y;
+    }
+    vertices[vid].position.x += vertices[vid].momentum.x;
+    vertices[vid].position.y += vertices[vid].momentum.y;
+
     point.position = float4(vertices[vid].position, 1);
-    point.size = 8.0;
+    point.size = 4.0;
     return point;
 }
 
@@ -57,7 +57,7 @@ vertex OutPoint line_vertex_shader(device float3 *vertices [[ buffer(1) ]],
 }
 
 fragment half4 red_fragment_shader(OutPoint point [[ stage_in ]]) {
-    return half4(1, 0, 0, 1);
+    return half4(1, 1, 1, 1);
 }
 
 vertex OutPoint point_vertex_shader(device InPoint *points [[ buffer(2) ]],
