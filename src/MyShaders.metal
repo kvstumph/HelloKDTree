@@ -25,7 +25,7 @@ fragment half4 basic_fragment_shader(OutPoint point [[ stage_in ]]) {
     return half4(1, 1, 1, 1);
 }
 
-vertex OutPoint red_vertex_shader(device InPoint *vertices [[ buffer(1) ]],
+vertex OutPoint bead_vertex_shader(device InPoint *vertices [[ buffer(1) ]],
                                   device float3 *voronoiVertices [[ buffer(4) ]],
                                   uint vid [[ vertex_id ]]) {
     OutPoint point;
@@ -40,8 +40,9 @@ vertex OutPoint red_vertex_shader(device InPoint *vertices [[ buffer(1) ]],
         newY = -newY;
         vertices[vid].momentum.y = -vertices[vid].momentum.y;
     }
-    vertices[vid].position.x += vertices[vid].momentum.x;
-    vertices[vid].position.y += vertices[vid].momentum.y;
+    // TODO: uncomment if you want the particles to move
+//    vertices[vid].position.x += vertices[vid].momentum.x;
+//    vertices[vid].position.y += vertices[vid].momentum.y;
 
     point.position = float4(vertices[vid].position, 1);
     point.size = 4.0;
@@ -56,8 +57,16 @@ vertex OutPoint line_vertex_shader(device float3 *vertices [[ buffer(1) ]],
     return point;
 }
 
-fragment half4 red_fragment_shader(OutPoint point [[ stage_in ]]) {
-    return half4(1, 1, 1, 1);
+fragment half4 bead_fragment_shader(OutPoint point [[ stage_in ]]) {
+    return half4(1, 0, 0, 1);
+}
+
+fragment half4 boundary_fragment_shader(OutPoint point [[ stage_in ]]) {
+    return half4(0.4, 1, 0.4, 1);
+}
+
+fragment half4 yellow_fragment_shader(OutPoint point [[ stage_in ]]) {
+    return half4(1, 1, 0.4, 1);
 }
 
 vertex OutPoint point_vertex_shader(device InPoint *points [[ buffer(2) ]],
