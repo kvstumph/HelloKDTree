@@ -13,6 +13,13 @@ struct OutPoint
     float size [[ point_size ]];
 };
 
+struct OutBead
+{
+    float4 position [[ position ]];
+    float size [[ point_size ]];
+    bool highlight;
+};
+
 vertex OutPoint basic_vertex_shader(device float3 *vertices [[ buffer(0) ]],
                                   uint vid [[ vertex_id ]]) {
     OutPoint point;
@@ -25,10 +32,11 @@ fragment half4 basic_fragment_shader(OutPoint point [[ stage_in ]]) {
     return half4(1, 1, 1, 1);
 }
 
-vertex OutPoint bead_vertex_shader(device InPoint *vertices [[ buffer(1) ]],
+vertex OutBead bead_vertex_shader(device InPoint *vertices [[ buffer(1) ]],
                                   device float3 *voronoiVertices [[ buffer(4) ]],
                                   uint vid [[ vertex_id ]]) {
-    OutPoint point;
+//    OutPoint point;
+    OutBead bead;
 
     float newX = vertices[vid].position.x + vertices[vid].momentum.x;
     float newY = vertices[vid].position.y + vertices[vid].momentum.y;
@@ -44,9 +52,18 @@ vertex OutPoint bead_vertex_shader(device InPoint *vertices [[ buffer(1) ]],
 //    vertices[vid].position.x += vertices[vid].momentum.x;
 //    vertices[vid].position.y += vertices[vid].momentum.y;
 
-    point.position = float4(vertices[vid].position, 1);
-    point.size = 4.0;
-    return point;
+//    point.position = float4(vertices[vid].position, 1);
+//    point.size = 4.0;
+//    return point;
+    bead.position = float4(vertices[vid].position, 1);
+    bead.size = 4.0;
+    
+    if (vid < 20) {
+        bead.highlight = true;
+    } else {
+        bead.highlight = false;
+    }
+    return bead;
 }
 
 vertex OutPoint line_vertex_shader(device float3 *vertices [[ buffer(1) ]],
@@ -57,9 +74,19 @@ vertex OutPoint line_vertex_shader(device float3 *vertices [[ buffer(1) ]],
     return point;
 }
 
-fragment half4 bead_fragment_shader(OutPoint point [[ stage_in ]]) {
+fragment half4 bead_fragment_shader(OutBead bead [[ stage_in ]]) {
+    if (bead.highlight) {
+       return half4(0, 0, 1, 1);
+    }
     return half4(1, 0, 0, 1);
 }
+
+//fragment half4 bead_fragment_shader(OutPoint point [[ stage_in ]]) {
+//    if () {
+//
+//    }
+//    return half4(1, 0, 0, 1);
+//}
 
 fragment half4 boundary_fragment_shader(OutPoint point [[ stage_in ]]) {
     return half4(0.4, 1, 0.4, 1);
