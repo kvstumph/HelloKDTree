@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class PointView2Controller: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

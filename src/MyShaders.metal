@@ -33,21 +33,20 @@ fragment half4 basic_fragment_shader(OutPoint point [[ stage_in ]]) {
 }
 
 vertex OutBead bead_vertex_shader(device InPoint *vertices [[ buffer(1) ]],
-                                  device float3 *voronoiVertices [[ buffer(4) ]],
                                   uint vid [[ vertex_id ]]) {
 //    OutPoint point;
     OutBead bead;
 
-    float newX = vertices[vid].position.x + vertices[vid].momentum.x;
-    float newY = vertices[vid].position.y + vertices[vid].momentum.y;
-    if (newX > 0.5 || newX < -0.5) {
-        newX = -newX;
-        vertices[vid].momentum.x = -vertices[vid].momentum.x;
-    }
-    if (newY > 0.5 || newY < -0.5) {
-        newY = -newY;
-        vertices[vid].momentum.y = -vertices[vid].momentum.y;
-    }
+//    float newX = vertices[vid].position.x + vertices[vid].momentum.x;
+//    float newY = vertices[vid].position.y + vertices[vid].momentum.y;
+//    if (newX > 0.5 || newX < -0.5) {
+//        newX = -newX;
+//        vertices[vid].momentum.x = -vertices[vid].momentum.x;
+//    }
+//    if (newY > 0.5 || newY < -0.5) {
+//        newY = -newY;
+//        vertices[vid].momentum.y = -vertices[vid].momentum.y;
+//    }
     // TODO: uncomment if you want the particles to move
 //    vertices[vid].position.x += vertices[vid].momentum.x;
 //    vertices[vid].position.y += vertices[vid].momentum.y;

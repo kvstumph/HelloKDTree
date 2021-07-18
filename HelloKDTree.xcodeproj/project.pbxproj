@@ -14,8 +14,12 @@
 		CB0FFCF421F3AD6900D6FAE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB0FFCF221F3AD6900D6FAE2 /* Main.storyboard */; };
 		CB0FFD0021F3AD6900D6FAE2 /* tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFCFF21F3AD6900D6FAE2 /* tests.swift */; };
 		CB0FFD0B21F3AD6900D6FAE2 /* uitests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD0A21F3AD6900D6FAE2 /* uitests.swift */; };
-		CB0FFD1921F3C9E300D6FAE2 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD1821F3C9E300D6FAE2 /* PointView.swift */; };
 		CB0FFD1B21F3F59200D6FAE2 /* MyShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CB0FFD1A21F3F59200D6FAE2 /* MyShaders.metal */; };
+		CB7C2C222307B2C400D38E4E /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7C2C212307B2C400D38E4E /* MenuController.swift */; };
+		CB7C2C262307B9E500D38E4E /* PointView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7C2C252307B9E500D38E4E /* PointView1.swift */; };
+		CB7C2C282307B9F800D38E4E /* PointView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7C2C272307B9F800D38E4E /* PointView2.swift */; };
+		CB7C2C2A2307BA8000D38E4E /* PointViewStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7C2C292307BA8000D38E4E /* PointViewStructs.swift */; };
+		CB7C2C2C2308B9CD00D38E4E /* PointView2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7C2C2B2308B9CD00D38E4E /* PointView2Controller.swift */; };
 		CBB45CFC21FD45DB00EB45BB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB45CFB21FD45DB00EB45BB /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +55,12 @@
 		CB0FFD0621F3AD6900D6FAE2 /* HelloKDTreeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloKDTreeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0FFD0A21F3AD6900D6FAE2 /* uitests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uitests.swift; sourceTree = "<group>"; };
 		CB0FFD0C21F3AD6900D6FAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB0FFD1821F3C9E300D6FAE2 /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
 		CB0FFD1A21F3F59200D6FAE2 /* MyShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MyShaders.metal; sourceTree = "<group>"; };
+		CB7C2C212307B2C400D38E4E /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		CB7C2C252307B9E500D38E4E /* PointView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointView1.swift; sourceTree = "<group>"; };
+		CB7C2C272307B9F800D38E4E /* PointView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointView2.swift; sourceTree = "<group>"; };
+		CB7C2C292307BA8000D38E4E /* PointViewStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointViewStructs.swift; sourceTree = "<group>"; };
+		CB7C2C2B2308B9CD00D38E4E /* PointView2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointView2Controller.swift; sourceTree = "<group>"; };
 		CBB45CFB21FD45DB00EB45BB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,14 +114,18 @@
 			children = (
 				CB0FFCE921F3AD6700D6FAE2 /* AppDelegate.swift */,
 				CB0FFCEB21F3AD6700D6FAE2 /* ViewController.swift */,
+				CB7C2C2B2308B9CD00D38E4E /* PointView2Controller.swift */,
 				CB0FFCF021F3AD6900D6FAE2 /* Assets.xcassets */,
 				CB0FFCF221F3AD6900D6FAE2 /* Main.storyboard */,
 				CB0FFCF521F3AD6900D6FAE2 /* Info.plist */,
 				CB0FFCF621F3AD6900D6FAE2 /* src.entitlements */,
 				CB0FFCED21F3AD6700D6FAE2 /* src.xcdatamodeld */,
-				CB0FFD1821F3C9E300D6FAE2 /* PointView.swift */,
+				CB7C2C292307BA8000D38E4E /* PointViewStructs.swift */,
+				CB7C2C252307B9E500D38E4E /* PointView1.swift */,
+				CB7C2C272307B9F800D38E4E /* PointView2.swift */,
 				CB0FFD1A21F3F59200D6FAE2 /* MyShaders.metal */,
 				CBB45CFB21FD45DB00EB45BB /* Extensions.swift */,
+				CB7C2C212307B2C400D38E4E /* MenuController.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -267,11 +279,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB0FFCEF21F3AD6700D6FAE2 /* src.xcdatamodeld in Sources */,
+				CB7C2C222307B2C400D38E4E /* MenuController.swift in Sources */,
+				CB7C2C262307B9E500D38E4E /* PointView1.swift in Sources */,
+				CB7C2C282307B9F800D38E4E /* PointView2.swift in Sources */,
 				CBB45CFC21FD45DB00EB45BB /* Extensions.swift in Sources */,
 				CB0FFCEC21F3AD6700D6FAE2 /* ViewController.swift in Sources */,
+				CB7C2C2C2308B9CD00D38E4E /* PointView2Controller.swift in Sources */,
+				CB7C2C2A2307BA8000D38E4E /* PointViewStructs.swift in Sources */,
 				CB0FFCEA21F3AD6700D6FAE2 /* AppDelegate.swift in Sources */,
 				CB0FFD1B21F3F59200D6FAE2 /* MyShaders.metal in Sources */,
-				CB0FFD1921F3C9E300D6FAE2 /* PointView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
