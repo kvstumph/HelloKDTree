@@ -16,6 +16,12 @@ class PointView1: MTKView {
     let ADD_MOTION: Bool = true
     let SHOW_KDTREE_LINES: Bool = true
     let COMPUTE_VORONOI: Bool = false
+
+    let TOTAL_SLICES: Int = 128
+    var CURRENT_SLICE: Int = 1
+    var CURRENT_SLICE_COUNT: Int = 0
+    var SLICE_EXPAND: Bool = true
+    
     // --------------------------------------------
     
     struct Vertex {
@@ -115,9 +121,9 @@ class PointView1: MTKView {
         
         self.commandQueue = device?.makeCommandQueue()
 
-        initDetectorLines()
+        updateTriangles()
         
-        initTriangles()
+        initDetectorLines()
         
         createBeads()
         
@@ -178,34 +184,70 @@ class PointView1: MTKView {
 //        avl.print()
 //    }
     
-    func initDetectorLines() {
-        let SLICES: Int = 4
-        
-        //Quadrant 1
-        detectorLines.append(SIMD3<Float>(0.5 * Float(sin(Double(0) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(0) * Double.pi / Double(SLICES * 2))),0))
-        for i in 1...(SLICES) {
-            detectorLines.append(SIMD3<Float>(0.5 * Float(sin(Double(i) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(i) * Double.pi / Double(SLICES * 2))),0))
+    func appendDetectorLines(xSign: Float, ySign: Float) {
+        detectorLines.append(SIMD3<Float>(xSign * 0.5 * Float(sin(Double(0) * Double.pi/Double(TOTAL_SLICES * 2))),ySign * 0.5 * Float(cos(Double(0) * Double.pi / Double(TOTAL_SLICES * 2))),0))
+        for i in 1...(TOTAL_SLICES) {
+            detectorLines.append(SIMD3<Float>(xSign * 0.5 * Float(sin(Double(i) * Double.pi/Double(TOTAL_SLICES * 2))),ySign * 0.5 * Float(cos(Double(i) * Double.pi / Double(TOTAL_SLICES * 2))),0))
             // Duplicate the line if not the last iteration.
-            if (i < SLICES) {
-                detectorLines.append(SIMD3<Float>(0.5 * Float(sin(Double(i) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(i) * Double.pi / Double(SLICES * 2))),0))
-            }
-        }
-        
-        //Quadrant 2
-        detectorLines.append(SIMD3<Float>(-0.5 * Float(sin(Double(0) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(0) * Double.pi / Double(SLICES * 2))),0))
-        for i in 1...(SLICES) {
-            detectorLines.append(SIMD3<Float>(-0.5 * Float(sin(Double(i) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(i) * Double.pi / Double(SLICES * 2))),0))
-            // Duplicate the line if not the last iteration.
-            if (i < SLICES) {
-                detectorLines.append(SIMD3<Float>(-0.5 * Float(sin(Double(i) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(i) * Double.pi / Double(SLICES * 2))),0))
+            if (i < TOTAL_SLICES) {
+                detectorLines.append(SIMD3<Float>(xSign * 0.5 * Float(sin(Double(i) * Double.pi/Double(TOTAL_SLICES * 2))),ySign * 0.5 * Float(cos(Double(i) * Double.pi / Double(TOTAL_SLICES * 2))),0))
             }
         }
     }
     
-    func initTriangles() {
-        triangles.append(Vertex(position: SIMD3<Float>(-0.3,0.0,0.0), color: SIMD4<Float>(1,0,0,1)))
-        triangles.append(Vertex(position: SIMD3<Float>(0.0,0.3,0.0), color: SIMD4<Float>(0,1,0,1)))
-        triangles.append(Vertex(position: SIMD3<Float>(0.3,0.0,0.0), color: SIMD4<Float>(0,0,1,1)))
+    func initDetectorLines() {
+        // Quadrant 1
+        appendDetectorLines(xSign: 1.0, ySign: 1.0)
+        
+        // Quadrant 2
+        appendDetectorLines(xSign: -1.0, ySign: 1.0)
+        
+        // Quadrant 3
+        appendDetectorLines(xSign: 1.0, ySign: -1.0)
+        
+        // Quadrant 4
+        appendDetectorLines(xSign: -1.0, ySign: -1.0)
+    }
+    
+    func appendTriangles(xSign: Float, ySign: Float) {
+        for i in 1...(self.CURRENT_SLICE) {
+            triangles.append(
+                Vertex(
+                    position: SIMD3<Float>(0.0, 0.0 ,0.0),
+                    color: SIMD4<Float>(1,0,0,1)
+                )
+            )
+            triangles.append(
+                Vertex(
+                    position: SIMD3<Float>(xSign * 0.5 * Float(sin(Double(i) * Double.pi/Double(self.TOTAL_SLICES * 2))), ySign * 0.5 * Float(cos(Double(i) * Double.pi / Double(self.TOTAL_SLICES * 2))),0),
+                    color: SIMD4<Float>(0,1,0,1)
+                )
+            )
+            triangles.append(
+                Vertex(
+                    position: SIMD3<Float>(xSign * 0.5 * Float(sin(Double(i-1) * Double.pi/Double(self.TOTAL_SLICES * 2))), ySign * 0.5 * Float(cos(Double(i-1) * Double.pi / Double(self.TOTAL_SLICES * 2))),0),
+                    color: SIMD4<Float>(0,0,1,1)
+                )
+            )
+        }
+    }
+    
+    func updateTriangles() {
+        triangles.removeAll()
+        
+        // Quadrant 1
+        appendTriangles(xSign: 1.0, ySign: 1.0)
+        
+        // Quadrant 2
+        appendTriangles(xSign: -1.0, ySign: 1.0)
+        
+        // Quadrant 3
+        appendTriangles(xSign: 1.0, ySign: -1.0)
+        
+        // Quadrant 4
+        appendTriangles(xSign: -1.0, ySign: -1.0)
+        
+        trianglesBuffer = device?.makeBuffer(bytes: triangles, length: MemoryLayout<Vertex>.stride * triangles.count, options: [])
     }
     
     func createBeads() {
@@ -335,6 +377,38 @@ class PointView1: MTKView {
 //                }
 
                 kdTreeCut(above, cell, depth + 1)
+            }
+        }
+    }
+    
+    func updateSlice() {
+        var sliceCountThreshold:Int
+        
+        self.CURRENT_SLICE_COUNT += 1
+        let double = cos(Double(self.CURRENT_SLICE) * Double.pi / Double(TOTAL_SLICES * 2))
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        guard let number =  numberFormatter.string(from: NSNumber(value: double)) else { fatalError("Can not get number") }
+        
+        if number == "0" {
+            sliceCountThreshold = 0
+        } else if number == "1" {
+            sliceCountThreshold = 1000
+        } else {
+            sliceCountThreshold = Int(number.split(separator: ".")[1]) ?? 0
+        }
+        if (Float(self.CURRENT_SLICE_COUNT) > Float(sliceCountThreshold / 150)) {
+            self.CURRENT_SLICE_COUNT = 0
+            if (self.SLICE_EXPAND) {
+                self.CURRENT_SLICE += 1
+            } else {
+                self.CURRENT_SLICE -= 1
+            }
+            
+            if (self.CURRENT_SLICE == TOTAL_SLICES) {
+                self.SLICE_EXPAND = false
+            } else if (self.CURRENT_SLICE == 1) {
+                self.SLICE_EXPAND = true
             }
         }
     }
@@ -582,6 +656,8 @@ class PointView1: MTKView {
             updateBeads()
         }
 
+        updateSlice()
+        updateTriangles()
         updateKDTree()
         
         if (COMPUTE_VORONOI) {
