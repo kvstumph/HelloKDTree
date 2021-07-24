@@ -26,7 +26,7 @@ class PointView2: MTKView {
     var voronoiRenderPipelineState: MTLRenderPipelineState!
     var yellowLinesRenderPipelineState: MTLRenderPipelineState!
     
-    var kdTreeLines: [float3] = []
+    var kdTreeLines: [SIMD3<Float>] = []
     //    var kdCells: [KDCell] = []
     var kdCellAVLTree: AVLTree<KDCell> = AVLTree()
     var cutLines: [Float] = []
@@ -44,25 +44,25 @@ class PointView2: MTKView {
     //    posix_memalign(&beads, alignment, xvectorByteSize)
     //    uint8Pointer.initialize(from: &bytes, count: 8)
     
-    let boundaryLines: [float3] = [
+    let boundaryLines: [SIMD3<Float>] = [
         // Top
-        float3(-0.5,0.5,0),
-        float3(0.5,0.5,0),
+        SIMD3<Float>(-0.5,0.5,0),
+        SIMD3<Float>(0.5,0.5,0),
         
         // Left
-        float3(-0.5,0.5,0),
-        float3(-0.5,-0.5,0),
+        SIMD3<Float>(-0.5,0.5,0),
+        SIMD3<Float>(-0.5,-0.5,0),
         
         // Right
-        float3(0.5,0.5,0),
-        float3(0.5,-0.5,0),
+        SIMD3<Float>(0.5,0.5,0),
+        SIMD3<Float>(0.5,-0.5,0),
         
         // Bottom
-        float3(-0.5,-0.5,0),
-        float3(0.5,-0.5,0)
+        SIMD3<Float>(-0.5,-0.5,0),
+        SIMD3<Float>(0.5,-0.5,0)
     ]
     
-    var voronoiLines: [float3] = []
+    var voronoiLines: [SIMD3<Float>] = []
     
     var vertexBuffer: MTLBuffer!
     var beadVertexBuffer: MTLBuffer!
@@ -150,7 +150,7 @@ class PointView2: MTKView {
         //        }
         
         for _ in (1...n) {
-            beads.append(Point(position: float3(Float.randPosition(),Float.randPosition(),0), momentum: Float.randMomentum()))
+            beads.append(Point(position: SIMD3<Float>(Float.randPosition(),Float.randPosition(),0), momentum: Float.randMomentum()))
         }
     }
     
@@ -167,14 +167,14 @@ class PointView2: MTKView {
                 newMomentumY = -beads[$0].momentum.y
             }
             
-            beads[$0] = Point(position: float3(newX, newY, 0), momentum: float3(newMomentumX, newMomentumY, 0))
+            beads[$0] = Point(position: SIMD3<Float>(newX, newY, 0), momentum: SIMD3<Float>(newMomentumX, newMomentumY, 0))
         }
         beadVertexBuffer = device?.makeBuffer(bytes: beads, length: MemoryLayout<Point>.stride * beads.count, options: [])
     }
     
     func createBuffers() {
         beadVertexBuffer = device?.makeBuffer(bytes: beads, length: MemoryLayout<Point>.stride * beads.count, options: [])
-        boundaryLinesBuffer = device?.makeBuffer(bytes: boundaryLines, length: MemoryLayout<float3>.stride * boundaryLines.count, options: [])
+        boundaryLinesBuffer = device?.makeBuffer(bytes: boundaryLines, length: MemoryLayout<SIMD3<Float>>.stride * boundaryLines.count, options: [])
     }
     
     func kdTreeCut(_ m: KDRange, _ bounds: [Float], _ depth: Int) {
@@ -203,11 +203,11 @@ class PointView2: MTKView {
         cutLines.append(cut)
         
         if (m.getAxis() == "X") {
-            kdTreeLines.append(float3(cut, bounds[0], 0))
-            kdTreeLines.append(float3(cut, bounds[2], 0))
+            kdTreeLines.append(SIMD3<Float>(cut, bounds[0], 0))
+            kdTreeLines.append(SIMD3<Float>(cut, bounds[2], 0))
         } else {
-            kdTreeLines.append(float3(bounds[1], cut, 0))
-            kdTreeLines.append(float3(bounds[3], cut, 0))
+            kdTreeLines.append(SIMD3<Float>(bounds[1], cut, 0))
+            kdTreeLines.append(SIMD3<Float>(bounds[3], cut, 0))
         }
         
         // TODO: to make computation easier, do not cut one side, unless both sides can be cut.
@@ -290,7 +290,7 @@ class PointView2: MTKView {
         //        }
         
         kdTreeCut(m, [0.5, 0.5, -0.5, -0.5], 0)
-        kdTreeLinesBuffer = device?.makeBuffer(bytes: kdTreeLines, length: MemoryLayout<float3>.stride * kdTreeLines.count, options: [])
+        kdTreeLinesBuffer = device?.makeBuffer(bytes: kdTreeLines, length: MemoryLayout<SIMD3<Float>>.stride * kdTreeLines.count, options: [])
         
         //         if (kdCells.count == 0) {
         ////            print("KVS: kdcells.count is ZERO")
@@ -368,10 +368,10 @@ class PointView2: MTKView {
     func createVoronoiDiagram() {
         //        var left: AVLNode<KDCell>? = kdCellAVLTree.root?.left
         
-        let beadOne: float3 = beads[0].position
-        let beadTwo: float3 = beads[1].position
-        let beadThree: float3 = beads[2].position
-        let beadFour: float3 = beads[3].position
+        let beadOne: SIMD3<Float> = beads[0].position
+        let beadTwo: SIMD3<Float> = beads[1].position
+        let beadThree: SIMD3<Float> = beads[2].position
+        let beadFour: SIMD3<Float> = beads[3].position
         
         // First triangle
         voronoiLines.append(beadOne)
@@ -393,7 +393,7 @@ class PointView2: MTKView {
         //        voronoiLines.append(beadThree)
         //        voronoiLines.append(beadFour)
         
-        voronoiBuffer = device?.makeBuffer(bytes: voronoiLines, length: MemoryLayout<float3>.stride * voronoiLines.count, options: [])
+        voronoiBuffer = device?.makeBuffer(bytes: voronoiLines, length: MemoryLayout<SIMD3<Float>>.stride * voronoiLines.count, options: [])
     }
     
     func createRenderPipelineState() {

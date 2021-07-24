@@ -134,3 +134,29 @@ vertex OutPoint point_vertex_shader(device InPoint *points [[ buffer(2) ]],
 fragment half4 point_fragment_shader(OutPoint point [[ stage_in ]]) {
     return half4(0, 0, 1, 1);
 }
+
+struct VertexIn
+{
+    float3 position;
+    float4 color;
+};
+
+struct RasterizerData {
+    float4 position [[ position ]];
+    float4 color;
+};
+
+vertex RasterizerData triangle_vertex_shader(device VertexIn *vertices [[ buffer(0) ]],
+                                  uint vid [[ vertex_id ]]) {
+    RasterizerData rd;
+    
+    rd.position = float4(vertices[vid].position, 1);
+    rd.color = vertices[vid].color;
+    
+    return rd;
+}
+
+fragment half4 triangle_fragment_shader(RasterizerData rd [[ stage_in ]]) {
+    float4 color = rd.color;
+    return half4(color.r, color.g, color.b, color.a);
+}

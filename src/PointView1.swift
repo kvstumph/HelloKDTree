@@ -18,15 +18,22 @@ class PointView1: MTKView {
     let COMPUTE_VORONOI: Bool = false
     // --------------------------------------------
     
+    struct Vertex {
+        var position: SIMD3<Float>
+        var color: SIMD4<Float>
+    }
+    
     var commandQueue: MTLCommandQueue!
     
     var renderPipelineState: MTLRenderPipelineState!
     var beadRenderPipelineState: MTLRenderPipelineState!
     var boundaryRenderPipelineState: MTLRenderPipelineState!
+    var detectorRenderPipelineState: MTLRenderPipelineState!
+    var trianglesRenderPipelineState: MTLRenderPipelineState!
     var voronoiRenderPipelineState: MTLRenderPipelineState!
     var yellowLinesRenderPipelineState: MTLRenderPipelineState!
     
-    var kdTreeLines: [float3] = []
+    var kdTreeLines: [SIMD3<Float>] = []
 //    var kdCells: [KDCell] = []
     var kdCellAVLTree: AVLTree<KDCell> = AVLTree()
     var cutLines: [Float] = []
@@ -44,53 +51,57 @@ class PointView1: MTKView {
 //    posix_memalign(&beads, alignment, xvectorByteSize)
 //    uint8Pointer.initialize(from: &bytes, count: 8)
     
-    let boundaryLines: [float3] = [
+    let boundaryLines: [SIMD3<Float>] = [
         //------------------------------
         // Front Face
         //------------------------------
         // Top
-        float3(-0.5,0.5,0),
-        float3(0.5,0.5,0),
+        SIMD3<Float>(-0.5,0.5,0),
+        SIMD3<Float>(0.5,0.5,0),
         
         // Left
-        float3(-0.5,0.5,0),
-        float3(-0.5,-0.5,0),
+        SIMD3<Float>(-0.5,0.5,0),
+        SIMD3<Float>(-0.5,-0.5,0),
         
         // Right
-        float3(0.5,0.5,0),
-        float3(0.5,-0.5,0),
+        SIMD3<Float>(0.5,0.5,0),
+        SIMD3<Float>(0.5,-0.5,0),
 
         // Bottom
-        float3(-0.5,-0.5,0),
-        float3(0.5,-0.5,0),
+        SIMD3<Float>(-0.5,-0.5,0),
+        SIMD3<Float>(0.5,-0.5,0),
         
         //------------------------------
         // Back Face  -- not showing...
         //------------------------------
         // Top
-        float3(-0.5,0.5,-0.5),
-        float3(0.5,0.5,-0.5),
+        SIMD3<Float>(-0.5,0.5,-0.5),
+        SIMD3<Float>(0.5,0.5,-0.5),
         
         // Left
-        float3(-0.5,0.5,-0.5),
-        float3(-0.5,-0.5,-0.5),
+        SIMD3<Float>(-0.5,0.5,-0.5),
+        SIMD3<Float>(-0.5,-0.5,-0.5),
         
         // Right
-        float3(0.5,0.5,-0.5),
-        float3(0.5,-0.5,-0.5),
+        SIMD3<Float>(0.5,0.5,-0.5),
+        SIMD3<Float>(0.5,-0.5,-0.5),
         
         // Bottom
-        float3(-0.5,-0.5,-0.5),
-        float3(0.5,-0.5,-0.5)
+        SIMD3<Float>(-0.5,-0.5,-0.5),
+        SIMD3<Float>(0.5,-0.5,-0.5)
     ]
     
-    var voronoiLines: [float3] = []
+    var detectorLines: [SIMD3<Float>] = []
+    var triangles: [Vertex] = []
+    var voronoiLines: [SIMD3<Float>] = []
     
     var vertexBuffer: MTLBuffer!
     var beadVertexBuffer: MTLBuffer!
     var voronoiBuffer: MTLBuffer!
     var kdCellBuffer: MTLBuffer!
     var boundaryLinesBuffer: MTLBuffer!
+    var detectorLinesBuffer: MTLBuffer!
+    var trianglesBuffer: MTLBuffer!
     var kdTreeLinesBuffer: MTLBuffer!
     
     required init(coder: NSCoder) {
@@ -103,6 +114,10 @@ class PointView1: MTKView {
         self.colorPixelFormat = .bgra8Unorm
         
         self.commandQueue = device?.makeCommandQueue()
+
+        initDetectorLines()
+        
+        initTriangles()
         
         createBeads()
         
@@ -163,6 +178,36 @@ class PointView1: MTKView {
 //        avl.print()
 //    }
     
+    func initDetectorLines() {
+        let SLICES: Int = 4
+        
+        //Quadrant 1
+        detectorLines.append(SIMD3<Float>(0.5 * Float(sin(Double(0) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(0) * Double.pi / Double(SLICES * 2))),0))
+        for i in 1...(SLICES) {
+            detectorLines.append(SIMD3<Float>(0.5 * Float(sin(Double(i) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(i) * Double.pi / Double(SLICES * 2))),0))
+            // Duplicate the line if not the last iteration.
+            if (i < SLICES) {
+                detectorLines.append(SIMD3<Float>(0.5 * Float(sin(Double(i) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(i) * Double.pi / Double(SLICES * 2))),0))
+            }
+        }
+        
+        //Quadrant 2
+        detectorLines.append(SIMD3<Float>(-0.5 * Float(sin(Double(0) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(0) * Double.pi / Double(SLICES * 2))),0))
+        for i in 1...(SLICES) {
+            detectorLines.append(SIMD3<Float>(-0.5 * Float(sin(Double(i) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(i) * Double.pi / Double(SLICES * 2))),0))
+            // Duplicate the line if not the last iteration.
+            if (i < SLICES) {
+                detectorLines.append(SIMD3<Float>(-0.5 * Float(sin(Double(i) * Double.pi/Double(SLICES * 2))),0.5 * Float(cos(Double(i) * Double.pi / Double(SLICES * 2))),0))
+            }
+        }
+    }
+    
+    func initTriangles() {
+        triangles.append(Vertex(position: SIMD3<Float>(-0.3,0.0,0.0), color: SIMD4<Float>(1,0,0,1)))
+        triangles.append(Vertex(position: SIMD3<Float>(0.0,0.3,0.0), color: SIMD4<Float>(0,1,0,1)))
+        triangles.append(Vertex(position: SIMD3<Float>(0.3,0.0,0.0), color: SIMD4<Float>(0,0,1,1)))
+    }
+    
     func createBeads() {
         
 //        for _ in (0...2) {
@@ -172,7 +217,7 @@ class PointView1: MTKView {
 //        }
         
         for _ in (1...n) {
-            beads.append(Point(position: float3(Float.randPosition(),Float.randPosition(),0), momentum: Float.randMomentum()))
+            beads.append(Point(position: SIMD3<Float>(Float.randPosition(),Float.randPosition(),0), momentum: Float.randMomentum()))
         }
     }
     
@@ -189,14 +234,16 @@ class PointView1: MTKView {
                 newMomentumY = -beads[$0].momentum.y
             }
             
-            beads[$0] = Point(position: float3(newX, newY, 0), momentum: float3(newMomentumX, newMomentumY, 0))
+            beads[$0] = Point(position: SIMD3<Float>(newX, newY, 0), momentum: SIMD3<Float>(newMomentumX, newMomentumY, 0))
         }
         beadVertexBuffer = device?.makeBuffer(bytes: beads, length: MemoryLayout<Point>.stride * beads.count, options: [])
     }
     
     func createBuffers() {
         beadVertexBuffer = device?.makeBuffer(bytes: beads, length: MemoryLayout<Point>.stride * beads.count, options: [])
-        boundaryLinesBuffer = device?.makeBuffer(bytes: boundaryLines, length: MemoryLayout<float3>.stride * boundaryLines.count, options: [])
+        boundaryLinesBuffer = device?.makeBuffer(bytes: boundaryLines, length: MemoryLayout<SIMD3<Float>>.stride * boundaryLines.count, options: [])
+        detectorLinesBuffer = device?.makeBuffer(bytes: detectorLines, length: MemoryLayout<SIMD3<Float>>.stride * detectorLines.count, options: [])
+        trianglesBuffer = device?.makeBuffer(bytes: triangles, length: MemoryLayout<Vertex>.stride * triangles.count, options: [])
     }
     
     func kdTreeCut(_ m: KDRange, _ bounds: [Float], _ depth: Int) {
@@ -225,11 +272,11 @@ class PointView1: MTKView {
         cutLines.append(cut)
         
         if (m.getAxis() == "X") {
-            kdTreeLines.append(float3(cut, bounds[0], 0))
-            kdTreeLines.append(float3(cut, bounds[2], 0))
+            kdTreeLines.append(SIMD3<Float>(cut, bounds[0], 0))
+            kdTreeLines.append(SIMD3<Float>(cut, bounds[2], 0))
         } else {
-            kdTreeLines.append(float3(bounds[1], cut, 0))
-            kdTreeLines.append(float3(bounds[3], cut, 0))
+            kdTreeLines.append(SIMD3<Float>(bounds[1], cut, 0))
+            kdTreeLines.append(SIMD3<Float>(bounds[3], cut, 0))
         }
         
         // TODO: to make computation easier, do not cut one side, unless both sides can be cut.
@@ -312,7 +359,7 @@ class PointView1: MTKView {
 //        }
         
         kdTreeCut(m, [0.5, 0.5, -0.5, -0.5], 0)
-        kdTreeLinesBuffer = device?.makeBuffer(bytes: kdTreeLines, length: MemoryLayout<float3>.stride * kdTreeLines.count, options: [])
+        kdTreeLinesBuffer = device?.makeBuffer(bytes: kdTreeLines, length: MemoryLayout<SIMD3<Float>>.stride * kdTreeLines.count, options: [])
         
 //         if (kdCells.count == 0) {
 ////            print("KVS: kdcells.count is ZERO")
@@ -390,10 +437,10 @@ class PointView1: MTKView {
     func createVoronoiDiagram() {
 //        var left: AVLNode<KDCell>? = kdCellAVLTree.root?.left
         
-        let beadOne: float3 = beads[0].position
-        let beadTwo: float3 = beads[1].position
-        let beadThree: float3 = beads[2].position
-        let beadFour: float3 = beads[3].position
+        let beadOne: SIMD3<Float> = beads[0].position
+        let beadTwo: SIMD3<Float> = beads[1].position
+        let beadThree: SIMD3<Float> = beads[2].position
+//        let beadFour: SIMD3<Float> = beads[3].position
         
         // First triangle
         voronoiLines.append(beadOne)
@@ -415,7 +462,7 @@ class PointView1: MTKView {
 //        voronoiLines.append(beadThree)
 //        voronoiLines.append(beadFour)
         
-        voronoiBuffer = device?.makeBuffer(bytes: voronoiLines, length: MemoryLayout<float3>.stride * voronoiLines.count, options: [])
+        voronoiBuffer = device?.makeBuffer(bytes: voronoiLines, length: MemoryLayout<SIMD3<Float>>.stride * voronoiLines.count, options: [])
     }
     
     func createRenderPipelineState() {
@@ -461,6 +508,36 @@ class PointView1: MTKView {
         
         do {
             boundaryRenderPipelineState = try device?.makeRenderPipelineState(descriptor: boundaryRenderPipelineDescriptor)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        // Create detectorRenderPipelineState
+        let detectorLinesVertexFunction = library?.makeFunction(name: "line_vertex_shader")
+        let detectorFragmentFunction = library?.makeFunction(name: "boundary_fragment_shader")
+        
+        let detectorRenderPipelineDescriptor = MTLRenderPipelineDescriptor()
+        detectorRenderPipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        detectorRenderPipelineDescriptor.vertexFunction = detectorLinesVertexFunction
+        detectorRenderPipelineDescriptor.fragmentFunction = detectorFragmentFunction
+        
+        do {
+            detectorRenderPipelineState = try device?.makeRenderPipelineState(descriptor: detectorRenderPipelineDescriptor)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        // Create triangleRenderPipelineState
+        let trianglesVertexFunction = library?.makeFunction(name: "triangle_vertex_shader")
+        let trianglesFragmentFunction = library?.makeFunction(name: "triangle_fragment_shader")
+        
+        let trianglesRenderPipelineDescriptor = MTLRenderPipelineDescriptor()
+        trianglesRenderPipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        trianglesRenderPipelineDescriptor.vertexFunction = trianglesVertexFunction
+        trianglesRenderPipelineDescriptor.fragmentFunction = trianglesFragmentFunction
+        
+        do {
+            trianglesRenderPipelineState = try device?.makeRenderPipelineState(descriptor: trianglesRenderPipelineDescriptor)
         } catch let error as NSError {
             print(error)
         }
@@ -530,6 +607,18 @@ class PointView1: MTKView {
         renderCommandEncoder?.setRenderPipelineState(boundaryRenderPipelineState)
         renderCommandEncoder?.setVertexBuffer(boundaryLinesBuffer, offset: 0, index: 1)
         renderCommandEncoder?.drawPrimitives(type: .line, vertexStart: 0, vertexCount: boundaryLines.count, instanceCount: 1)
+        renderCommandEncoder?.popDebugGroup()
+        
+        renderCommandEncoder?.pushDebugGroup("Detector lines")
+        renderCommandEncoder?.setRenderPipelineState(detectorRenderPipelineState)
+        renderCommandEncoder?.setVertexBuffer(detectorLinesBuffer, offset: 0, index: 1)
+        renderCommandEncoder?.drawPrimitives(type: .line, vertexStart: 0, vertexCount: detectorLines.count, instanceCount: 1)
+        renderCommandEncoder?.popDebugGroup()
+        
+        renderCommandEncoder?.pushDebugGroup("Triangles")
+        renderCommandEncoder?.setRenderPipelineState(trianglesRenderPipelineState)
+        renderCommandEncoder?.setVertexBuffer(trianglesBuffer, offset: 0, index: 0)
+        renderCommandEncoder?.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: triangles.count)
         renderCommandEncoder?.popDebugGroup()
         
         if (COMPUTE_VORONOI) {

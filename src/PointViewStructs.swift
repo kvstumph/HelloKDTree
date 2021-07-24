@@ -2,8 +2,8 @@ import MetalKit
 
 
 struct Point {
-    var position: float3
-    var momentum: float3
+    var position: SIMD3<Float>
+    var momentum: SIMD3<Float>
 }
 
 struct KDCell {
@@ -24,7 +24,7 @@ extension KDCell: Comparable {
     }
 }
 
-let SMALLEST_POINT:Point = Point(position: float3(-Float.greatestFiniteMagnitude,-Float.greatestFiniteMagnitude,0), momentum: float3(0,0,0))
+let SMALLEST_POINT:Point = Point(position: SIMD3<Float>(-Float.greatestFiniteMagnitude,-Float.greatestFiniteMagnitude,0), momentum: SIMD3<Float>(0,0,0))
 
 class AVLNode<T: Comparable & Equatable> {
     var parent: AVLNode<T>?
@@ -280,14 +280,14 @@ class KDRange {
         axis = inAxis
     }
     func printVals(_ inVals: inout [Int]) {
-        for i in (startIndex...endIndex) {
-//            print("kdrange \(i + 1 - startIndex) is: \(inVals[i])")
-        }
+//        for i in (startIndex...endIndex) {
+////            print("kdrange \(i + 1 - startIndex) is: \(inVals[i])")
+//        }
     }
     func printAll(_ inVals: inout [Int]) {
-        for i in (0...inVals.count - 1) {
-//            print("kdrange \(i + 1) is: \(inVals[i])")
-        }
+//        for i in (0...inVals.count - 1) {
+////            print("kdrange \(i + 1) is: \(inVals[i])")
+//        }
     }
     func get(_ inVals: inout [Point], _ i: Int) -> Point {
         if (startIndex + i > endIndex) {
